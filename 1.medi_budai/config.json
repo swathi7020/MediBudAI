@@ -1,0 +1,56 @@
+{
+  "name": "MediBudAI",
+  "version": "1.0.0",
+  "description": "AI-powered medical document analysis system",
+  "type": "Flask Web Application",
+  "features": [
+    "PDF medical document upload",
+    "OpenAI GPT-5 analysis",
+    "Structured medical reporting",
+    "Real-time processing",
+    "Export functionality",
+    "Responsive design"
+  ],
+  "tech_stack": {
+    "backend": {
+      "framework": "Flask",
+      "language": "Python 3.8+",
+      "ai_service": "OpenAI API",
+      "pdf_processing": "PyPDF2"
+    },
+    "frontend": {
+      "language": "JavaScript (Vanilla)",
+      "styling": "CSS3",
+      "features": ["Drag & Drop", "Responsive Design", "Animations"]
+    }
+  },
+  "endpoints": {
+    "/": "Main application interface",
+    "/api/upload": "Document upload and analysis",
+    "/api/health": "System health check"
+  },
+  "analysis_features": [
+    "Document type identification",
+    "Key medical findings extraction",
+    "Diagnosis detection",
+    "Medication identification",
+    "Follow-up recommendations",
+    "Risk assessment",
+    "Summary generation",
+    "Actionable recommendations"
+  ],
+  "security": [
+    "File type validation",
+    "Size limits",
+    "Temporary storage",
+    "Input sanitization"
+  ],
+  "supported_documents": [
+    "Lab reports",
+    "Radiology reports", 
+    "Discharge summaries",
+    "Prescription records",
+    "Medical consultation notes",
+    "Pathology reports"
+  ]
+}

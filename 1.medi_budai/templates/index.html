@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediBudAI - Medical Document Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🏥 MediBudAI</h1>
+            <p class="tagline">AI-Powered Medical Document Analysis</p>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-card">
+                    <h2>Upload Medical Documents</h2>
+                    <p class="subtitle">Upload one or more PDF medical documents for AI-powered analysis — they're parsed and analyzed in parallel</p>
+
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📄</div>
+                            <h3>Drop PDFs here or click to browse</h3>
+                            <p>Maximum file size: 16MB each · Up to <span id="maxFilesLabel">10</span> files per batch</p>
+                            <p class="file-types">Supported: PDF files only</p>
+                        </div>
+                        <input type="file" id="fileInput" accept=".pdf" multiple hidden>
+                    </div>
+
+                    <div class="file-list" id="fileList"></div>
+
+                    <div class="comments-section">
+                        <h3>Additional Comments (Optional)</h3>
+                        <textarea
+                            id="userComments"
+                            placeholder="Add any specific questions or context. These comments apply to every document in this batch. For example: 'Focus on blood pressure readings' or 'Patient has history of diabetes'..."
+                            rows="3"
+                            maxlength="500"
+                        ></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span>/500 characters
+                        </div>
+                    </div>
+
+                    <div class="upload-actions">
+                        <button id="uploadBtn" class="btn btn-primary" disabled>
+                            <span class="btn-text" id="uploadBtnText">Analyze Documents</span>
+                            <span class="btn-loader" style="display: none;">🔄 Analyzing...</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-card">
+                    <h2>Analysis Results</h2>
+
+                    <div class="batch-summary" id="batchSummary"></div>
+
+                    <div class="results-list" id="resultsList"></div>
+
+                    <div class="results-actions">
+                        <button class="btn btn-secondary" onclick="resetForm()">Analyze More Documents</button>
+                        <button class="btn btn-outline" onclick="downloadAllResults()">Download All Reports</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-card">
+                    <div class="loading-spinner"></div>
+                    <h3 id="loadingTitle">Analyzing Documents...</h3>
+                    <p id="loadingSubtitle">Our AI is reviewing your medical documents in parallel. This may take a little longer the more files you send.</p>
+                    <div class="loading-file-list" id="loadingFileList"></div>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section class="error-section" id="errorSection" style="display: none;">
+                <div class="error-card">
+                    <div class="error-icon">❌</div>
+                    <h3>Upload Failed</h3>
+                    <p id="errorMessage"></p>
+                    <button class="btn btn-primary" onclick="resetForm()">Try Again</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MediBudAI. AI-powered medical document analysis for educational purposes only.</p>
+            <p class="disclaimer">⚠️ This tool is for informational purposes only and should not replace professional medical advice.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

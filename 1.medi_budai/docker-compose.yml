@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  medibudai:
+    build: .
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_ENV=production
+      - FLASK_DEBUG=False
+      - FLASK_HOST=0.0.0.0
+      - FLASK_PORT=5000
+      - GUNICORN_WORKERS=4
+      - GUNICORN_THREADS=2
+      - GUNICORN_TIMEOUT=180
+      - MAX_FILES_PER_UPLOAD=10
+      - MAX_CONCURRENT_ANALYSES=4
+      - LOG_LEVEL=INFO
+    env_file:
+      - .env
+    volumes:
+      # Persistent storage for uploads, outputs, and logs
+      - ./uploads:/app/uploads
+      - ./output:/app/output
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
